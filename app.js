@@ -1,12 +1,13 @@
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
-const bodyParser = require('body-parser');
-// Load User Model
+
+// Load Models
 require('./models/User');
 require('./models/Story');
 
@@ -21,6 +22,12 @@ const stories = require('./routes/stories');
 // Load Keys
 const keys = require('./config/keys');
 
+//Handlebars Helper
+const {
+  truncate,
+  stripTags
+} = require('./helpers/hbs')
+
 // Map global promises
 mongoose.Promise = global.Promise;
 // Mongoose Connect
@@ -32,12 +39,15 @@ mongoose.connect(keys.mongoURI, {
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
+  helpers: {
+    truncate : truncate,
+    stripTags: stripTags
+  },
   defaultLayout:'main'
 }));
 app.set('view engine', 'handlebars');
@@ -67,7 +77,7 @@ app.use('/', index);
 app.use('/auth', auth);
 app.use('/stories', stories);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`)

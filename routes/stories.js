@@ -7,7 +7,13 @@ const {ensureAuthenticated, ensureGuest} = require('../helpers/auth');
 
 // Stories Index
 router.get('/', (req, res) => {
-  res.render('stories/index');
+  Story.find({status:'public'})
+    .populate('user')
+    .then(stories => {
+      res.render('stories/index', {
+        stories: stories
+      });
+    });
 });
 
 // Add Story Form
@@ -15,29 +21,31 @@ router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
 });
 
-// add story
-router.post('/' , (req, res)=>{
-let allowcomments;
+// Process Add Story
+router.post('/', (req, res) => {
+  let allowComments;
 
-if(req.body.allowcomments){
-  allowcomments = true;
-}else{
-  allowcomments = false;
-}
+  if(req.body.allowComments){
+    allowComments = true;
+  } else {
+    allowComments = false;
+  }
 
-const newStory = {
-  title: req.body.title,
-  body : req.body.body,
-  status : req.body.status,
-  allowcomments: allowcomments,
-  user: req.user.id
-}
-new newStory(newStory)
-.save()
-.then(story =>{
-  res.redirect(`/stories/show/${story.id}`);
-});
+  const newStory = {
+    title: req.body.title,
+    body: req.body.body,
+    contact : req.body.contact,
+    status: req.body.status,
+    allowComments:allowComments,
+    user: req.user.id
+  }
 
+  // Create Story
+  new Story(newStory)
+    .save()
+    .then(story => {
+      res.redirect(`/stories/show/${story.id}`);
+    });
 });
 
 module.exports = router;

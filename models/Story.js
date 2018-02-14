@@ -11,37 +11,41 @@ const StorySchema = new Schema({
     type: String,
     required: true
   },
+  contact:{
+    type:String,
+    required: false
+  },
   status: {
     type: String,
     default:'public'
   },
   allowComments: {
     type: Boolean,
-    default: true
+    default:true
   },
   comments: [{
-      commentBody:{
-          type:String,
-          required: true
-      },
-      commentDate:{
-        type:Date,
-        default: Date.now
-      },
-      commnetUser:{
-          type:Schema.Types.ObjectId,
-          ref:'users'
-      }
+    commentBody: {
+      type: String,
+      required: true
+    },
+    commentDate:{
+      type: Date,
+      default: Date.now
+    },
+    commentUser:{
+      type: Schema.Types.ObjectId,
+      ref:'users'
+    }
   }],
   user:{
-    type:Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref:'users'
   },
   date:{
-    type:Date,
+    type: Date,
     default: Date.now
   }
 });
 
 // Create collection and add schema
-mongoose.model('stories', StorySchema , 'stories');
+mongoose.model('stories', StorySchema, 'stories');

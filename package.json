@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node app.js"
   },
-  "author": "Kyrylo Kalashnikov",
-  "license": "ISC",
+  "author": "Brad Traversy",
+  "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
