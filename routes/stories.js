@@ -16,6 +16,19 @@ router.get('/', (req, res) => {
     });
 });
 
+// Show Single Story
+router.get('/show/:id', (req, res) => {
+  Story.findOne({
+    _id: req.params.id
+  })
+  .populate('user')
+  .then(story => {
+    res.render('stories/show', {
+      story: story
+    });
+  });
+});
+
 // Add Story Form
 router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
@@ -34,7 +47,6 @@ router.post('/', (req, res) => {
   const newStory = {
     title: req.body.title,
     body: req.body.body,
-    contact : req.body.contact,
     status: req.body.status,
     allowComments:allowComments,
     user: req.user.id

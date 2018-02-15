@@ -10,8 +10,7 @@
         </div>
         <div class="card-content center-align">
           <h5>{{title}}</h5>
-          <p class="story-text">{{{truncate body 150}}}</p>
-          <p class="story-text">Conatact Me{{{contact}}}</p>
+          <p class="story-text">{{truncate body 150}}</p>
           <br>
           <div class="chip">
             <img src="{{user.image}}">
@@ -19,7 +18,7 @@
           </div>
         </div>
         <div class="card-action center-align">
-          <div class="btn grey" href="/stories/show/{{id}}">Read More</div>
+          <a class="btn grey" href="/stories/show/{{id}}">Read More</a>
         </div>
       </div>
     </div>

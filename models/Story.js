@@ -11,10 +11,6 @@ const StorySchema = new Schema({
     type: String,
     required: true
   },
-  contact:{
-    type:String,
-    required: false
-  },
   status: {
     type: String,
     default:'public'
