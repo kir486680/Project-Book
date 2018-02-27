@@ -11,6 +11,10 @@ const StorySchema = new Schema({
     type: String,
     required: true
   },
+  link:{
+    type: String,
+    required: true
+  },
   status: {
     type: String,
     default:'public'

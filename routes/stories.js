@@ -60,6 +60,7 @@ router.post('/', (req, res) => {
 
   const newStory = {
     title: req.body.title,
+    link: req.body.link,
     body: req.body.body,
     status: req.body.status,
     allowComments:allowComments,
@@ -93,6 +94,7 @@ router.put('/:id' , (req, res)=>{
   //New val
 
   story.title =  req.body.title,
+  story.link = req.body.link,
   story.body = req.body.body,
   story.status = req.body.status,
   story. allowComments=allowComments
