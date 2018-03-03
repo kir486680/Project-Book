@@ -16,5 +16,5 @@ To install all packages run :
 ```
 npm install 
 ```
-Dont forget to pste your own info into keys.js file!
+Dont forget to paste your own info into keys.js file!
 

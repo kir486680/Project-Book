@@ -122,7 +122,7 @@ router.put('/:id' , (req, res)=>{
     _id: req.params.id
   })
   .populate('user')
-  .then(story => {
+  .then(story => { 
     let allowComments;
 
   if(req.body.allowComments){
@@ -132,7 +132,7 @@ router.put('/:id' , (req, res)=>{
   }
 
   //New val
-  category: req.body.category,
+  story.category=  req.body.category,
   story.title =  req.body.title,
   story.link = req.body.link,
   story.body = req.body.body,
@@ -172,6 +172,41 @@ router.post('/comment/:id', (req, res) => {
         res.redirect(`/stories/show/${story.id}`);
       });
   });
+});
+
+//Categories 
+
+//Web Cat
+router.get('/web'  ,(req,res)=>{
+
+  Story.find({"category": "web" })
+  .populate('user')
+  .then(stories=>{
+    res.render('stories/web' , {
+      stories:stories
+    })
+  })
+});
+//Desktop cat
+router.get('/desktop'  ,(req,res)=>{
+
+  Story.find({"category": "desktop" })
+  .populate('user')
+  .then(stories=>{
+    res.render('stories/desktop' , {
+      stories:stories
+    })
+  })
+});
+router.get('/other'  ,(req,res)=>{
+
+  Story.find({"category": "other" })
+  .populate('user')
+  .then(stories=>{
+    res.render('stories/other' , {
+      stories:stories
+    })
+  })
 });
 
 
