@@ -1,4 +1,4 @@
-<h1>Edit Story</h1>
+<h1>Edit Project</h1>
 <div class="row">
   <form action="/stories/{{story.id}}?_method=PUT" method="post" class="col s12">
    <input type="hidden" name="_method" value="PUT">
@@ -12,6 +12,18 @@
       <div class="input-field">
         <input type="text" name="link" value="{{story.link}}">
         <label for="link">Link</label>
+      </div>
+    </div>
+<div class="row">
+      <div class="input-field">
+        <select name="category">
+          {{#select story.category}}
+          <option value="web" selected>WEB</option>
+          <option value="dekstop">Desktop</option>
+          <option value="other">other</option>
+          {{/select}}
+        </select>
+        <label for="category">Status</label>
       </div>
     </div>
 

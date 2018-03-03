@@ -97,6 +97,7 @@ router.post('/', (req, res) => {
   }
 
   const newStory = {
+    category: req.body.category,
     title: req.body.title,
     link: req.body.link,
     body: req.body.body,
@@ -104,6 +105,7 @@ router.post('/', (req, res) => {
     allowComments:allowComments,
     user: req.user.id
   }
+
 
   // Create Story
   new Story(newStory)
@@ -130,13 +132,13 @@ router.put('/:id' , (req, res)=>{
   }
 
   //New val
-
+  category: req.body.category,
   story.title =  req.body.title,
   story.link = req.body.link,
   story.body = req.body.body,
   story.status = req.body.status,
   story. allowComments=allowComments
-  
+
   story.save()
   .then(story=>{
     res.redirect('/dashboard');
