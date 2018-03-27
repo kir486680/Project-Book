@@ -36,6 +36,7 @@
       <div class="chip">
             <img src="{{commentUser.image}}">
           <a href="/stories/user/{{commentUser.id}}">  {{commentUser.firstName}} {{commentUser.lastName}}</a> 
+         
           </div>
           <br>
           <small>Posted: {{formatDate commentDate 'MMMM Do YYYY'}}</small>
@@ -55,6 +56,12 @@
       </div>
       <div class="card-action">
         <a href="/stories/user/{{story.user.id}}">More From {{story.user.firstName}}</a>
+      </div>
+      <div class="card-action">
+        <a href="/stories/profile/{{story.user.id}}">View Profile {{story.user.firstName}}</a>
+      </div>
+      <div class="card-action">
+        <h6>Contact:  {{story.user.email}}</h6> 
       </div>
     </div>
   </div>

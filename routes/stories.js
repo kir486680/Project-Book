@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -47,7 +48,7 @@ router.get('/show/:id', (req, res) => {
 
 //List stories from a user 
 router.get('/user/:userId' , (req , res)=>{
-  Story.find({user:req.params.userId , status : 'public'})
+  Story.find({user:req.params.userId })
   .populate('user')
   .then(stories=>{
     res.render('stories/index' , {
@@ -55,6 +56,36 @@ router.get('/user/:userId' , (req , res)=>{
     })
   })
 })
+
+////////////////User routes
+
+//User profile
+router.get('/profile/:userId' , (req, res )=>{
+  var id = req.params.userId
+  User.findOne({
+    _id: id
+  })
+  .then(users => {
+      res.render('user/profile', {
+        users:users
+      });
+  });
+})
+
+router.get('/about/:userId' ,(req,res)=>{
+  var id = req.params.userId
+  User.findOne({
+    _id: id
+  })
+  .then(users=>{
+    res.render('user/about')
+  })
+})
+
+
+
+
+//////////////////////////////
 //Loged in user stories 
 router.get('/my' ,ensureAuthenticated ,  (req , res)=>{
   Story.find({user:req.user.id })
@@ -62,9 +93,12 @@ router.get('/my' ,ensureAuthenticated ,  (req , res)=>{
   .then(stories=>{
     res.render('stories/index' , {
       stories:stories
+
     })
+ 
   })
 })
+
 
 // Add Story Form
 router.get('/add', ensureAuthenticated, (req, res) => {
@@ -198,6 +232,7 @@ router.get('/desktop'  ,(req,res)=>{
     })
   })
 });
+//Other cat
 router.get('/other'  ,(req,res)=>{
 
   Story.find({"category": "other" })
@@ -208,6 +243,8 @@ router.get('/other'  ,(req,res)=>{
     })
   })
 });
+
+
 
 
 module.exports = router;

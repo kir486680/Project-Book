@@ -1,4 +1,4 @@
-<h1>Stories</h1>
+<h1>Projects</h1>
  <a class="btn yellow" href="/stories/web">Web</a>
   <a class="btn blue" href="/stories/desktop">Desktop</a>
  <a class="btn green" href="/stories/other">Other</a>
@@ -10,6 +10,7 @@
         <div class="card-image">
           {{#if user}}
             {{{editIcon user.id ../user.id id }}}
+            
           {{/if}}
         
         </div>
@@ -23,6 +24,7 @@
           <div class="chip">
             <img src="{{user.image}}">
            <a href="/stories/user/{{user.id}}">{{user.firstName}} {{user.lastName}}</a> 
+            
           </div>
         </div>
         <div class="card-action center-align">

@@ -1,0 +1,15 @@
+<h1>Edit Project</h1>
+<div class="row">
+  <form action="/stories//about/{{users.id}}?_method=PUT" method="post" class="col s12">
+   
+
+    <div class="row">
+      <div class="input-field">
+        <h5>Tell people about yourself !</h5>
+        <textarea name="body">{{users.about}}</textarea>
+      </div>
+    </div>
+
+    <input type="submit" value="Save" class="btn">
+  </form>
+</div>

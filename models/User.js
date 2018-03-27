@@ -19,6 +19,10 @@ const UserSchema = new Schema({
   },
   image: {
     type:String
+  },
+  about:{
+    type:String,
+    default:"Nothing"
   }
 });
 
